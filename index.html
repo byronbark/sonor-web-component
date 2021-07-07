@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Native Sonor Dashboard WebComponent</title>
+ 
+    <script type="text/javascript" src="https://www.banquedesterritoires.fr/design/neva/guideline/script/modernizr.js"></script>
+    <script type="text/javascript" src="https://www.banquedesterritoires.fr/design/neva/guideline/script/detectizr.js"></script>
+
+    <script type="module" src="sonor-header.js"></script>
+    <script type="module" src="sonor-charts.js"></script>
+    <script src="//d3js.org/d3.v3.min.js"></script>
+    <link rel="stylesheet" href="https://www.banquedesterritoires.fr/design/neva/guideline/style/style.css" type="text/css">
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet' />
+
+</head>
+
+<body>
+    <div class="container pl-0 pr-0">
+        <div class="block-multi-item bg-white text-black d-flex flex-column flex-xl-row justify-content-between align-items-center p-2">
+            <div class="icon ftz-8 pr-xl-7">
+                <img src="https://svgshare.com/i/Yhk.svg" height="200px" width="200px">
+            </div>
+            <div class="text pr-xl-7">
+                <p>Connaissez-vous le degré de pollution sonore dans votre ville? Savez-vous quelles politiques publiques entreprendre pour l’atténuer? Et comment engager la conversation avec vos citoyens pour agir ensemble sur cette nuance majeure? 
+                </br>
+                Tout cela, et en quelques minutes seulement, le tableau de bord de Sonor vous le permet.</p>
+            </div>
+            <div class="icon ftz-8 pr-xl-7">
+                <a href="https://www.matrice.io">
+                <img src="./matricelogo.png" height="200px" width="200px"></img>
+            </a>
+            </div>
+        </div>
+        <div class="block-multi-item bg-primary text-white d-flex flex-column flex-xl-row justify-content-between align-items-center p-2">
+        </div>
+    <script>
+        function getRandomInt(min, max) {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
+        }
+
+        var accessToken = 'pk.eyJ1IjoiYnlyb25iYXJraHVpemVuIiwiYSI6ImNrbWVsODV3ZjIyOW8ycHBodzZ4MGJlaDEifQ.tFaCp0Ql8PJQxXaJwNdk0g'
+        var hexurl = 'https://raw.githubusercontent.com/byronbark/Data/main/grid.json'
+        var pointsurl= 'https://raw.githubusercontent.com/lewagon/tips/master/paris.geojson'
+    </script>
+
+        <sonor-charts></sonor-charts>
+        
+        <div class="row spacer-b">
+        <div class="col-12 col-xl-10 mx-xl-auto">
+        <div class="block-bordered border mt-3">
+        <div class="row justify-content-center">
+            <div class="col-md-4 mb-3">
+                <div class="item">
+                    <div class="paragraph paragraph--type--title-and-leading paragraph--view-mode--default card card__wrapper mb-3">
+                        <div class="card__body">
+                            <h3 class="h3 card__title  hn--sep pb-2 mb-2"> Restez au contact de vos citoyens et bénéficiez d’un indice local et humain. 
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-4 mb-3">
+                
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="item">
+                    <div class="paragraph paragraph--type--title-and-leading paragraph--view-mode--default card card__wrapper mb-3">
+                        <div class="card__body">
+                            <h3 class="h3 card__title  hn--sep pb-2 mb-1"> Grâce à notre outil de suivi des recommandations et nos enquêtes terrains, prenez rapidement connaissance des politiques publiques à mettre en place, adaptées à chaque point noir. 
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-start">
+            <div class="col-md-4 mb-3">
+                <div class="item">
+                    <div class="paragraph paragraph--type--title-and-leading paragraph--view-mode--default card card__wrapper mb-3">
+                        <div class="card__body">
+                            <h3 class="h3 card__title  hn--sep pb-2 mb-2"> Soyez toujours à jour des dernières règlementations, et prenez les décisions adéquates. 
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8 mb-3">
+                <form class="form">
+                    <div class="table-responsive d-none d-lg-block">
+                        <table role="presentation" class="table">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th scope="col">
+                                        <div class="sort-label">
+                                            <div class="form-group cell-select-checkbox">
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input select-all-checkbox" id="nomDuDossier">
+                                                    <label class="custom-control-label" for="ref">Ref</label>
+                                                </div>
+                                            </div>
+                                            <button type="button" class="btn btn-actions btn-filters text-secondary" title="Trier par nom de dossier">
+                                                <span class="icon-sort-table" aria-hidden="true"></span>
+                                                <span class="sr-only">Trier par ref</span>
+                                            </button>
+                                        </div>
+                                    </th>
+                                    <th scope="col">
+                                        <span class="sort-label">
+                                            Categorie
+                                            <button type="button" class="btn btn-actions btn-filters text-secondary" title="Trier par [categorie]">
+                                                <span class="icon-sort-table" aria-hidden="true"></span>
+                                                <span class="sr-only">Trier par [categorie]</span>
+                                            </button>
+                                        </span>
+                                    </th>
+                                    <th scope="col">
+                                        <span class="sort-label">
+                                            Nb
+                                            <button type="button" class="btn btn-actions btn-filters text-secondary" title="Trier par [Nb]">
+                                                <span class="icon-sort-table" aria-hidden="true"></span>
+                                                <span class="sr-only">Trier par [Nb]</span>
+                                            </button>
+                                        </span>
+                                    </th>
+                                    <th scope="col">
+                                        <span class="sort-label">
+                                            Statut et état
+                                            <button type="button" class="btn btn-actions btn-filters text-secondary" title="Trier par statut et état">
+                                                <span class="icon-sort-table" aria-hidden="true"></span>
+                                                <span class="sr-only">Trier par statut et état</span>
+                                            </button>
+                                        </span>
+                                    </th>
+                                    <th scope="col" class="text-center">
+                                        Actions
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row" aria-describedby="statut01">
+                                        <div class="form-group cell-select-checkbox">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" id="ref1">
+                                                <label class="custom-control-label font-weight-bold" for="ref1">PB1503_01</label>
+                                            </div>
+                                        </div>
+                                    </th>
+                                    <td>Bruit Generale</td>
+                                    <td>1</td>
+                                    <td id="statut01">
+                                        <div class="dossier-status text-alert">
+                                            <span class="icon-traitement-en-cours" aria-hidden="true"></span>
+            
+                                            <span class="sr-only">Dossier</span>
+                                            <p class="dossier-status-title">En cours de traitement</p>
+                                        </div>
+                                    </td>
+                                    <td class="text-center">
+                                        <button type="button" class="btn btn-actions" title="Télécharger le dossier [nom du dossier]">
+                                            <a href="https://drive.google.com/file/d/1O1MnMJALrPKK49pJaNkUkD9vZ87TwfW0/view?usp=sharing">
+                                            <span class="icon-telecharger" aria-hidden="true"></span>
+                                            <span class="sr-only">Télécharger le dossier [nom du dossier]</span>
+                                            </a>
+                                        </button>
+                                        <button type="button" class="btn btn-actions" title="Modifier le dossier [nom du dossier]">
+                                            <span class="icon-modifier" aria-hidden="true"></span>
+                                            <span class="sr-only">Modifier le dossier [nom du dossier]</span>
+                                        </button>
+                                        <button type="button" class="btn btn-actions" title="Supprimer le dossier [nom du dossier]">
+                                            <span class="icon-supprimer" aria-hidden="true"></span>
+                                            <span class="sr-only">Supprimer le dossier [nom du dossier]</span>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" aria-describedby="statut02">
+                                        <div class="form-group cell-select-checkbox">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" id="ref3">
+                                                <label class="custom-control-label font-weight-bold" for="ref3">PB1007_03</label>
+                                            </div>
+                                        </div>
+                                    </th>
+                                    <td>Bruit Routier</td>
+                                    <td>2</td>
+                                    <td id="statut02">
+                                        <div class="dossier-status text-warning">
+                                            <span class="icon-demande-validee" aria-hidden="true"></span>
+            
+                                            <span class="sr-only">Dossier</span>
+                                            <p class="dossier-status-title">Validé</p>
+                                        </div>
+                                    </td>
+                                    <td class="text-center">
+                                        <button type="button" class="btn btn-actions" title="Télécharger le dossier [nom du dossier]">
+                                            <a href="https://drive.google.com/file/d/1gQ8qr99yXMPhch5CLNyU8ofBLRizJqdG/view?usp=sharing"></a>
+                                            <span class="icon-telecharger" aria-hidden="true"></span>
+                                            <span class="sr-only">Télécharger le dossier [nom du dossier]</span>
+                                        </button>
+                                        <button type="button" class="btn btn-actions" title="Modifier le dossier [nom du dossier]">
+                                            <span class="icon-modifier" aria-hidden="true"></span>
+                                            <span class="sr-only">Modifier le dossier [nom du dossier]</span>
+                                        </button>
+                                        <button type="button" class="btn btn-actions" title="Supprimer le dossier [nom du dossier]">
+                                            <span class="icon-supprimer" aria-hidden="true"></span>
+                                            <span class="sr-only">Supprimer le dossier [nom du dossier]</span>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" aria-describedby="statut03">
+                                        <div class="form-group cell-select-checkbox">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" id="ref2">
+                                                <label class="custom-control-label font-weight-bold" for="ref2">PB1304_02</label>
+                                            </div>
+                                        </div>
+                                    </th>
+                                    <td>Alerte</td>
+                                    <td>3</td>
+                                    <td id="statut02">
+                                        <div class="dossier-status text-success">
+                                            <span class="icon-demande-validee" aria-hidden="true"></span>
+            
+                                            <span class="sr-only">Dossier</span>
+                                            <p class="dossier-status-title">Succés</p>
+                                        </div>
+                                    </td>
+                                    <td class="text-center">
+                                        <button type="button" class="btn btn-actions" title="Télécharger le dossier [nom du dossier]">
+                                            <a href="https://drive.google.com/file/d/1gQ8qr99yXMPhch5CLNyU8ofBLRizJqdG/view?usp=sharing"></a>
+                                            <span class="icon-telecharger" aria-hidden="true"></span>
+                                            <span class="sr-only">Télécharger le dossier [nom du dossier]</span>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                </form>
+                
+            </div>
+        </div>    
+        </div> 
+        </div>  
+        <div class="notebottom notebottom__wrapper">
+            <h2 class="h2 mb-4 spacer-t">Pour aller plus loin..</h2>
+            <div class="spacer-b">
+                <div class="spacer-b">
+                    <ul class="list--arrowed">
+                        <li class="text-dark mb-2">
+                            <a href="./">En savoir plus sur l’offre d’accompagnement de Sonor (website)</a>
+                        </li>
+                        <li>
+                            <a href="./">En savoir plus sur l’impact de la pollution sonore sur l’attractivité des territoires</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        </div>
+        </div>
+    </div>
+</body>
+</html>

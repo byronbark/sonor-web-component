@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Native Sonor Dashboard WebComponent</title>
+ 
+    <script type="text/javascript" src="https://www.banquedesterritoires.fr/design/neva/guideline/script/modernizr.js"></script>
+    <script type="text/javascript" src="https://www.banquedesterritoires.fr/design/neva/guideline/script/detectizr.js"></script>
+
+    <script type="module" src="sonor-header.js"></script>
+    <script type="module" src="sonor-charts.js"></script>
+    <script src="//d3js.org/d3.v3.min.js"></script>
+    <link rel="stylesheet" href="https://www.banquedesterritoires.fr/design/neva/guideline/style/style.css" type="text/css">
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet' />
+</head>
+
+<body>
+    <div class="container pl-0 pr-0">
+        <div class="block-multi-item bg-white text-black d-flex flex-column flex-xl-row justify-content-between align-items-center p-2">
+            <div class="icon ftz-8 pr-xl-7">
+                <img src="https://svgshare.com/i/Yhk.svg" height="200px" width="200px">
+            </div>
+            <div class="text pr-xl-7">
+                <p>Connaissez-vous le degré de pollution sonore dans votre ville? Savez-vous quelles politiques publiques entreprendre pour l’atténuer? Et comment engager la conversation avec vos citoyens pour agir ensemble sur cette nuance majeure? 
+                </br>
+                Tout cela, et en quelques minutes seulement, le tableau de bord de Sonor vous lepermet.</p>
+            </div>
+            <div class="btn">
+                <a href="https://www.google.com" class="btn btn-tertiary">Voir plus</a>
+            </div>
+        </div>
+        <div class="block-multi-item bg-primary text-white d-flex flex-column flex-xl-row justify-content-between align-items-center p-4">
+        </div>
+        <div class="row">
+            <div class="col">
+                <div id='map' style='width: 100%; height: 400px;'></div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="card"><h3>Hello</h3></div>
+            </div>
+        </div>
+    <script>
+        var accessToken = 'pk.eyJ1IjoiYnlyb25iYXJraHVpemVuIiwiYSI6ImNrbWVsODV3ZjIyOW8ycHBodzZ4MGJlaDEifQ.tFaCp0Ql8PJQxXaJwNdk0g'
+        var hexurl = 'https://raw.githubusercontent.com/byronbark/Data/main/grid.json'
+        var pointsurl= 'https://raw.githubusercontent.com/lewagon/tips/master/paris.geojson'
+
+        mapboxgl.accessToken = accessToken
+        var map = new mapboxgl.Map({
+            container: 'map', // container ID
+            style: 'mapbox://styles/mapbox/streets-v11', // style URL
+            center: [2.3, 48.84], // starting position [lng, lat]
+            zoom: 14 // starting zoom
+        });
+        
+        map.addControl(new mapboxgl.NavigationControl());
+
+        function getRandomInt(min, max) {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
+        }
+
+        map.on('load', function() {
+
+	        // Loading hexagon data with d3
+            d3.json(hexurl,
+                function(err, data) {
+                
+                if (err) throw err;
+
+                data.features = data.features.map(function (d) {
+                    d.properties.scale = getRandomInt(1,7);
+                    return d;
+                });
+
+                console.log(data)
+
+                map.addSource('hexGrid', {
+                    type: 'geojson',
+                    'data': data,
+                });
+                
+                map.addLayer({
+                    id: 'hexLayer',
+                    type: 'fill',
+                    source: 'hexGrid',
+                    'layout': {},
+                    'paint': {
+                        'fill-color': [
+                            'interpolate',
+                            ['linear'],
+                            ['get', 'scale'],
+                            1,
+                            '#d3f9b5',
+                            2,
+                            '#ddfc74',
+                            5,
+                            '#3d0c11',
+                            7,
+                            '#bf6900'
+                            ],
+                        'fill-opacity': 0.4,
+                        'fill-outline-color': "rgba(0,0,0,0)"
+                    }
+                });
+
+
+            });
+
+            d3.json(pointsurl,
+                function(err, data) {
+                
+                if (err) throw err;
+
+                map.addSource('points', {
+                    type: 'geojson',
+                    'data': data,
+                });
+                
+                map.addLayer({
+                    id: 'pointLayer',
+                    type: 'circle',
+                    source: 'points',
+                    'paint': {
+                        'circle-color': "rgb(0,200,0)",
+                        'circle-radius': 10
+                    }
+                });
+
+
+            });
+	}); // end d3.json
+    </script>
+
+        <sonor-charts></sonor-charts>
+        <div class="row spacer-b">
+        <div class="col-12 col-xl-10 mx-xl-auto">
+        <div row="row align-items-center"></div>
+        <div class="row">
+            <div class="col-md-4 mb-3">
+                <div class="item">
+                    <div class="paragraph paragraph--type--title-and-leading paragraph--view-mode--default card card__wrapper mb-3">
+                        <div class="card__body">
+                            <h3 class="h3 card__title  hn--sep pb-2 mb-2"> Restez au contact de vos citoyens et bénéficiez d’un indice local et humain. 
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="card"><h3>Hello</h3></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 mb-3">
+                <div class="card"><h3>Hello</h3></div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="item">
+                    <div class="paragraph paragraph--type--title-and-leading paragraph--view-mode--default card card__wrapper mb-3">
+                        <div class="card__body">
+                            <h3 class="h3 card__title  hn--sep pb-2 mb-2"> Restez au contact de vos citoyens et bénéficiez d’un indice local et humain. 
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 mb-3">
+                <div class="item">
+                    <div class="paragraph paragraph--type--title-and-leading paragraph--view-mode--default card card__wrapper mb-3">
+                        <div class="card__body">
+                            <h3 class="h3 card__title  hn--sep pb-2 mb-2"> Restez au contact de vos citoyens et bénéficiez d’un indice local et humain. 
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="card"><h3>Hello</h3></div>
+            </div>
+        </div>   
+        <div class="notebottom notebottom__wrapper">
+            <h2 class="h2 mb-4 spacer-t">Pour aller plus loin..</h2>
+            <div class="spacer-b">
+                <div class="spacer-b">
+                    <ul class="list--arrowed">
+                        <li class="text-dark mb-2">
+                            <a href="./">En savoir plus sur l’offre d’accompagnement de Sonor (website)</a>
+                        </li>
+                        <li>
+                            <a href="./">En savoir plus sur l’impact de la pollution sonore sur l’attractivité des territoires</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>  
+        </div>
+        </div>  
+        </div>
+    </div>
+</body>
+</html>
