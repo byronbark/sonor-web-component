@@ -79,12 +79,14 @@ export class SonorCharts extends HTMLElement {
     
     updateLayerTwo(e) {
         if (!this.switched) {
+            this.shadowRoot.getElementById("input-4").setAttribute("class","btn btn-success mr-1");
             this.shadowRoot.getElementById("input-4").innerText="Évolution";
             this.switched=true;
             this.removeLayers(this.map);
             this.updateLayers(this.map);
         } else {
-            this.shadowRoot.getElementById("input-4").innerText="Moyenne";
+            this.shadowRoot.getElementById("input-4").setAttribute("class","btn btn-info mr-1");
+            this.shadowRoot.getElementById("input-4").innerText="Moyenne";         
             this.switched=false;
             this.removeLayers(this.map);
             this.addInitialLayers(this.map);
@@ -227,7 +229,7 @@ export class SonorCharts extends HTMLElement {
             var indexToUpdate = Math.round(Math.random() * config.data.labels.length);
             console.log(indexToUpdate)
             var avg=myLine.data.datasets[0].data.reduce((acc,v) => acc + v) / config.data.labels.length;
-            this.shadowRoot.getElementById("canvasResult").innerHTML="Moyenne:"+avg;
+            this.shadowRoot.getElementById("canvasResult").innerHTML="Moyenne: "+avg+"dB";
             // Update one of the points in the second dataset
             //myLine.datasets[1].points[indexToUpdate].value = Math.random() * 100;
             myLine.data.datasets[0].data[indexToUpdate]=Math.floor(Math.random()*100);

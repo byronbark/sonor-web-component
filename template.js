@@ -5,7 +5,7 @@ export const templateContent = `
             <btn id="input-1" class="btn btn-secondary mr-1">Demo</btn>
             <btn id="input-2" class="btn btn-secondary mr-1">24h</btn>
             <btn id="input-3" class="btn btn-secondary mr-1">7j</btn>
-            <btn id="input-4" class="btn btn-secondary mr-1">Moyenne</btn>
+            <btn id="input-4" class="btn btn-info mr-1">Moyenne</btn>
             </div>
             <div id="geocoderPosition" class="mr-5 pb-0 pt-2"></div>
         </div>
