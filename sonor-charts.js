@@ -1,7 +1,7 @@
 import {templateContent} from './template.js';
 import {templateStyle} from './style.js';
 import mapboxgl from 'https://cdn.skypack.dev/mapbox-gl';
-import * as  ChartJs  from "./node_modules/chart.js/dist/chart.js"
+import * as  ChartJs  from "https://cdn.jsdelivr.net/npm/chart.js"
 
 
 const $ = window.$;
