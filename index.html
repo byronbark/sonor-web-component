@@ -48,33 +48,176 @@
 
         <sonor-charts></sonor-charts>
         
-        <div class="row spacer-b">
-        <div class="col-12 col-xl-10 mx-xl-auto">
+        <div class="block-bordered border bg-lighter text-dark mt-3 font-size-18"><p><strong>Grâce</strong> à un diagnostic de la pollution sonore, riche, précis et actionnable, vous pourrez agir là où vos citoyens en ont le plus besoin.
+            Jour, nuit, heure, semaine et week-end, suivez facilement et précisément, les évolutions de la pollution sonore au sein de votre territoire.
+            </p>
+        </div>
+        <div class="col-12 col-xl-12 mx-xl-auto">
         <div class="block-bordered border mt-3">
-        <div class="row justify-content-center">
+        <div class="row justify-content-start">
             <div class="col-md-4 mb-3">
                 <div class="item">
                     <div class="paragraph paragraph--type--title-and-leading paragraph--view-mode--default card card__wrapper mb-3">
                         <div class="card__body">
-                            <h3 class="h3 card__title  hn--sep pb-2 mb-2"> Restez au contact de vos citoyens et bénéficiez d’un indice local et humain. 
+                            <h3 class="h3 card__title  hn--sep pb-2 mb-2">
+                                Grâce à notre outil de suivi des recommandations et nos enquêtes terrains, prenez rapidement connaissance des politiques publiques à mettre en place. 
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8 mb-3">
+                <form class="form">
+                    <div class="table-responsive d-none d-lg-block">
+                        <table role="presentation" class="table">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">
+                                        <div class="sort-label">
+                                            <div class="form-group cell-select-checkbox">
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input select-all-checkbox" id="recommandations">
+                                                    <label class="custom-control-label" for="ref">Locale</label>
+                                                </div>
+                                            </div>
+                                            <button type="button" class="btn btn-actions btn-filters text-secondary" title="Trier par recommandations">
+                                                <span class="icon-sort-table" aria-hidden="true"></span>
+                                                <span class="sr-only">Trier par locale</span>
+                                            </button>
+                                        </div>
+                                    </th>
+                                    <th scope="col">
+                                        <span class="sort-label text-info">
+                                            Source
+                                            <button type="button" class="btn btn-actions btn-filters text-secondary" title="Trier par [categorie]">
+                                                <span class="icon-sort-table" aria-hidden="true"></span>
+                                                <span class="sr-only">Trier par [categorie]</span>
+                                            </button>
+                                        </span>
+                                    </th>
+                                    <th scope="col">
+                                        <span class="sort-label">
+                                            Risque (1-7)
+                                            <button type="button" class="btn btn-actions btn-filters text-secondary" title="Trier par [Risque]">
+                                                <span class="icon-sort-table" aria-hidden="true"></span>
+                                                <span class="sr-only">Trier par</span>
+                                            </button>
+                                        </span>
+                                    </th>
+                                    <th scope="col">
+                                        <span class="sort-label">
+                                            Statut
+                                            <button type="button" class="btn btn-actions btn-filters text-secondary" title="Trier par statut et état">
+                                                <span class="icon-sort-table" aria-hidden="true"></span>
+                                                <span class="sr-only">Trier par statut</span>
+                                            </button>
+                                        </span>
+                                    </th>
+                                    <th scope="col" class="text-center">
+                                        Actions
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row" aria-describedby="reco01">
+                                        <div class="form-group cell-select-checkbox">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" id="reco1">
+                                                <label class="custom-control-label font-weight-bold" for="reco1">15é</label>
+                                            </div>
+                                        </div>
+                                    </th>
+                                    <td>Plaintes</td>
+                                    <td>5</td>
+                                    <td id="statut01">
+                                        <div class="dossier-status text-info">
+            
+                                            <span class="sr-only">Dossier</span>
+                                            <p class="dossier-status-title">Alerte</p>
+                                        </div>
+                                    </td>
+                                    <td class="text-center">
+                                        <button type="button" class="btn btn-actions" title="Modifier le dossier [nom du dossier]">
+                                            <span class="icon-ajouter" aria-hidden="true"></span>
+                                            <span class="sr-only">Modifier le dossier [nom du dossier]</span>
+                                        </button>
+                                        <button type="button" class="btn btn-actions" title="Supprimer le dossier [nom du dossier]">
+                                            <span class="icon-supprimer" aria-hidden="true"></span>
+                                            <span class="sr-only">Supprimer le dossier [nom du dossier]</span>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" aria-describedby="statut02">
+                                        <div class="form-group cell-select-checkbox">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" id="ref3">
+                                                <label class="custom-control-label font-weight-bold" for="ref3">11é</label>
+                                            </div>
+                                        </div>
+                                    </th>
+                                    <td>Travaux</td>
+                                    <td>2</td>
+                                    <td id="statut02">
+                                        <div class="dossier-status text-warning">
+                                            <span class="sr-only">Dossier</span>
+                                            <p class="dossier-status-title">Suivi</p>
+                                        </div>
+                                    </td>
+                                    <td class="text-center">
+                                        <button type="button" class="btn btn-actions" title="Modifier le dossier [nom du dossier]">
+                                            <span class="icon-ajouter" aria-hidden="true"></span>
+                                            <span class="sr-only">Modifier le dossier [nom du dossier]</span>
+                                        </button>
+                                        <button type="button" class="btn btn-actions" title="Supprimer le dossier [nom du dossier]">
+                                            <span class="icon-supprimer" aria-hidden="true"></span>
+                                            <span class="sr-only">Supprimer le dossier [nom du dossier]</span>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" aria-describedby="statut03">
+                                        <div class="form-group cell-select-checkbox">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" id="ref2">
+                                                <label class="custom-control-label font-weight-bold" for="ref2">9é</label>
+                                            </div>
+                                        </div>
+                                    </th>
+                                    <td>Traffique</td>
+                                    <td>3</td>
+                                    <td id="statut02">
+                                        <div class="dossier-status text-info">
+            
+                                            <span class="sr-only">Dossier</span>
+                                            <p class="dossier-status-title">Alerte</p>
+                                        </div>
+                                    </td>
+                                    <td class="text-center">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                </form>
+            </div>
+        </div>
+        <div class="row justify-content-between">
+            <div class="col-md-8 mb-3">
+                <div class="item">
+                    <div class="paragraph paragraph--type--title-and-leading paragraph--view-mode--default card card__wrapper mb-3">
+                        <div class="card__body">
+                            <h3 class="h3 card__title  hn--sep pb-2 mb-1">Grâce à notre outil de suivi des recommandations et nos enquêtes terrains, prenez rapidement connaissance des politiques publiques à mettre en place.
                             </h3>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-md-4 mb-3">
-                
-            </div>
-        </div>
-        <div class="row justify-content-center">
-            <div class="col-md-4 mb-3">
-                
-            </div>
-            <div class="col-md-4 mb-3">
                 <div class="item">
                     <div class="paragraph paragraph--type--title-and-leading paragraph--view-mode--default card card__wrapper mb-3">
                         <div class="card__body">
-                            <h3 class="h3 card__title  hn--sep pb-2 mb-1"> Grâce à notre outil de suivi des recommandations et nos enquêtes terrains, prenez rapidement connaissance des politiques publiques à mettre en place, adaptées à chaque point noir. 
+                            <h3 class="h3 card__title  hn--sep pb-2 mb-1">Restez au contact de vos citoyens et bénéficiez d’un indice local et humain.
                             </h3>
                         </div>
                     </div>
@@ -266,8 +409,7 @@
                 </div>
             </div>
         </div>
-        </div>
-        </div>
     </div>
+    
 </body>
 </html>
