@@ -6,7 +6,8 @@ export const templateStyle = `
     <link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet' />
     <style type="text/css">
 
-    
+
+
 
 .mapboxgl-popup-content {
     position: relative;

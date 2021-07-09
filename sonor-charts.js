@@ -218,6 +218,7 @@ export class SonorCharts extends HTMLElement {
         }
             
         var ctx = canvas.getContext('2d');
+        
         window.myLine = new Chart(ctx, config);
 
         setInterval(function(){
