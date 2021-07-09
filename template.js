@@ -1,8 +1,8 @@
 export const templateContent = `
     <div id="headerbar" class="block-multi-item bg-black text-white flex-column justify-content-start flex-xl-row align-items-left p-1 position-relative">
         <btn id="input-1" class="btn btn-secondary mr-1">Demo</btn>
-        <btn id="input-2" class="btn btn-secondary mr-1">J1</btn>
-        <btn id="input-3" class="btn btn-secondary mr-1">J7</btn>
+        <btn id="input-2" class="btn btn-secondary mr-1">24h</btn>
+        <btn id="input-3" class="btn btn-secondary mr-1">7j</btn>
         <btn id="input-4" class="btn btn-secondary mr-1">Moyenne</btn>
     </div>
     <div class="row mb-2">

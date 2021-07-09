@@ -154,7 +154,7 @@ export class SonorCharts extends HTMLElement {
                 labels: ['Dimanche','Lundi', 'Mardi', 'Mercredi', 'Aujourdhui'],
                 datasets: [{
                     label: 'Bruit Nocturnale (dB)',
-                    backgroundColor: "rgba(255,159,5,0.3)",
+                    backgroundColor: "rgba(255,159,5,0.4)",
                     borderColor: "rgba(255,159,5,0.6)",
                     pointBackgroundColor: "rgba(255,159,5,0.9)",
                     tension: 0.2,
@@ -162,7 +162,7 @@ export class SonorCharts extends HTMLElement {
                     fill: true,
                 }, {
                     label: 'Bruit Jour (dB)',
-                    backgroundColor: "rgba(229,41,29,0.3)",
+                    backgroundColor: "rgba(229,41,29,0.4)",
                     borderColor: "rgba(229,41,29,0.6)",
                     pointBackgroundColor: "rgba(229,41,29,0.9)",
                     tension: 0.2,
