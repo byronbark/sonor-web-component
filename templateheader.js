@@ -4,7 +4,7 @@ export const templateHeaderContent = `
         <img src="https://svgshare.com/i/Yhk.svg" height="200px" width="200px">
     </div>
     <div class="text pr-xl-7">
-        <p>Connaissez-vous le degré de pollution sonore dans votre ville? Savez-vous quelles politiques publiques entreprendre pour l’atténuer? Et comment engager la conversation avec vos citoyens pour agir ensemble sur cette nuance majeure? 
+        <p>Connaissez-vous le degré de pollution sonore dans votre ville ? Savez-vous quelles politiques publiques entreprendre pour l’atténuer ? Et comment engager la conversation avec vos citoyens pour agir ensemble sur cette nuance majeure ? 
         </br>
         Tout cela, et en quelques minutes seulement, le tableau de bord de Sonor vous le permet.</p>
     </div>

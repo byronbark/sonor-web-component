@@ -2,6 +2,7 @@ import {templateContent} from './template.js';
 import {templateStyle} from './style.js';
 import mapboxgl from 'https://cdn.skypack.dev/mapbox-gl';
 import * as  ChartJs  from "https://cdn.jsdelivr.net/npm/chart.js"
+import * as mapboxgeocoder from "https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.min.js";
 
 
 const $ = window.$;
@@ -274,6 +275,14 @@ export class SonorCharts extends HTMLElement {
             zoom: 14 // starting zoom
         });
         this.map.addControl(new mapboxgl.NavigationControl());
+
+        var geocoder = 
+            new MapboxGeocoder({
+            accessToken: mapboxgl.accessToken,
+            mapboxgl: mapboxgl
+            });
+        
+        this.shadowRoot.getElementById('geocoderPosition').appendChild(geocoder.onAdd(this.map));
 
         
         //On hex click event
