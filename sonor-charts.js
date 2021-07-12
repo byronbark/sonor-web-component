@@ -10,7 +10,7 @@ const $ = window.$;
 export class SonorCharts extends HTMLElement {   
     constructor() {
         super();
-    
+        const labelsWeekend = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi','Vendredi'];
         var mapContainer;
         var zoom=14;
         var newChart;
@@ -154,7 +154,7 @@ export class SonorCharts extends HTMLElement {
         var config = {
             type: 'line',
             data: {
-                labels: ['Dimanche','Lundi', 'Mardi', 'Mercredi', 'Aujourdhui'],
+                labels: ['Lundi', 'Mardi', 'Mercredi', 'Jeudi','Vendredi'],
                 datasets: [{
                     label: 'Bruit Nocturnale (dB)',
                     backgroundColor: "rgba(255,159,5,0.4)",
@@ -327,9 +327,9 @@ export class SonorCharts extends HTMLElement {
                         ['linear'],
                         ['get', 'scale'],
                         30,
-                        '#d3f9b5',
+                        'rgba(0,255,0,0.2)',
                         35,
-                        'hsl(199,90%,83%)',
+                        'rgba(0,255,0,0.4)',
                         50,
                         'hsl(200,73%,66%)',
                         70,
@@ -408,7 +408,7 @@ export class SonorCharts extends HTMLElement {
                             70,
                             'hsl(199,90%,83%)',
                             80,
-                            'hsl(204,58%,46%)'
+                            'red'
                             ],
                         'fill-opacity': 0.7,
                         'fill-outline-color': "rgba(0,0,0,0)"
@@ -445,8 +445,8 @@ export class SonorCharts extends HTMLElement {
                 var scale = e.features[0].properties.scale;
                 new mapboxgl.Popup()
                   .setLngLat(e.features[0].geometry.coordinates[0][5])
-                  .setHTML(`<div class="p-2 mb-0 block-bordered border bg-primary text-white">
-                            <p>Bruit Moyenne Ici: `+scale+` dB</p>
+                  .setHTML(`<div class="customPopup p-2 mb-0 block-bordered bg-dark text-white">
+                            <p>Bruit Moyenne Ici: <strong>`+scale+` dB</strong></p>
                             </div>`)
                   .addTo(mapbox);
               });

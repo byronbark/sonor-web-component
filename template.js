@@ -3,11 +3,16 @@ export const templateContent = `
         <div class="row">
             <div class="col">
             <btn id="input-1" class="btn btn-secondary mr-1">Demo</btn>
-            <btn id="input-2" class="btn btn-secondary mr-1">24h</btn>
+            <btn id="input-2" class="btn btn-secondary mr-1">0h-12h</btn>
             <btn id="input-3" class="btn btn-secondary mr-1">7j</btn>
+            <btn id="input-5" class="btn btn-secondary mr-1">Semaine</btn>
             <btn id="input-4" class="btn btn-info mr-1">Moyenne</btn>
             </div>
-            <div id="geocoderPosition" class="mr-5 pb-0 pt-2"></div>
+            
+                    <div id="geocoderPosition" class="mr-2 pb-0 pt-1"></div>
+                    
+                    
+
         </div>
         
     </div>

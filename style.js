@@ -7,8 +7,20 @@ export const templateStyle = `
     <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.css" type="text/css">
     <style type="text/css">
 
+    
 
 
+    .mapboxgl-ctrl-geocoder {
+        font-size: 18px;
+        line-height: 24px;
+        position: relative;
+        background-color: #fff;
+        width: 500px;
+        min-width: 240px;
+        z-index: 1;
+        border-radius: 20px;
+        transition: width .25s, min-width .25s;
+      }
 
 .mapboxgl-popup-content {
     position: relative;
